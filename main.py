@@ -1,8 +1,10 @@
 import discord, os, time
 from discord.ext import commands
+from discord import Intents
 from dotenv import load_dotenv
 
-client = commands.Bot(command_prefix = '>')
+intents = discord.Intents.all()
+client = commands.Bot(command_prefix = '>', intents = intents)
 client.remove_command('help')
 
 # ========================= COGS ========================= #

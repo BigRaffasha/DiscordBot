@@ -22,17 +22,19 @@ class Admin(commands.Cog):
 
     # ------KICK----- #
     @commands.command(aliases=['k', 'remove'])
-    @commands.has_permissions(kick_members=True)
+    @commands.has_permissions(administrator=True)
     async def kick(self, ctx, member: discord.Member, *, reason = None):
         await ctx.guild.kick(member)
         await ctx.send(f"Kicked {member.mention}")
+        return
 
     # -----BAN----- #
     @commands.command()
-    @commands.has_permissions(ban_members=True)
+    @commands.has_permissions(administrator=True)
     async def ban(self, ctx, member: discord.Member, *, reason=None):
         await member.ban(reason=reason)
         await ctx.send(f'{member} has been banned')
+        return
 
     # -----UNBAN----- #
     @commands.command()
@@ -45,7 +47,8 @@ class Admin(commands.Cog):
             if (user.name, user.discriminator) == (member_name, member_discriminator):
                 await ctx.guild.unban(user)
                 await ctx.send(f'Unbanned {user.mention}')
-                
+                return
+
 # ========================= ERRORS ========================= #
 
     # -----KICK ERROR----- #
@@ -55,6 +58,8 @@ class Admin(commands.Cog):
             await ctx.send(f'Please specify a member')
         elif isinstance(error, commands.MemberNotFound):
             await ctx.send(f"Sorry, I can't find that user")
+        else:
+            await ctx.send(f"You can't kick an Admin!")
 
     # -----BAN ERROR----- #
     @ban.error
@@ -63,6 +68,8 @@ class Admin(commands.Cog):
             await ctx.send(f'Please specify a member')
         elif isinstance(error, commands.MemberNotFound):
             await ctx.send(f"Sorry, I can't find that user")
+        else:
+            await ctx.send(f"Are you sick?")
 
 def setup(client):
     client.add_cog(Admin(client))
