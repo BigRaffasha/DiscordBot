@@ -24,7 +24,7 @@ class Information(commands.Cog):
         embed = discord.Embed(color = discord.Colour.green(), timestamp=ctx.message.created_at)
         member = ctx.author if not member else member
         
-        # ----- Field -----#
+        # Field
         embed.set_author(name=member, icon_url=member.avatar_url)
         # Line 1
         embed.add_field(name="User ID:", value=member.id, inline=True)
@@ -44,6 +44,18 @@ class Information(commands.Cog):
 
         await ctx.send(embed=embed)
         return
+
+    # ----- AVATAR ----- #
+    @commands.command()
+    async def avatar(self, ctx, member:discord.Member=None):
+        member = ctx.author if not member else member
+        embed = discord.Embed(color = discord.Colour.green())
+
+        # Field
+        embed.set_author(name=member, icon_url=member.avatar_url)
+        embed.set_image(url=member.avatar_url)
+
+        await ctx.send(embed=embed)
 
     # ----- DONATE ----- #
     @commands.command()

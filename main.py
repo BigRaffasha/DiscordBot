@@ -31,6 +31,27 @@ async def on_ready():
     await channel.send(f'Im back online!')
     print('Bot is online!')
 
+# ========================= COMMANDS ========================= #
+@client.command()
+async def help(ctx):
+    author = ctx.message.author
+    embed = discord.Embed(color=discord.Color.blue(), title="Bot Commands", description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", timestamp=ctx.message.created_at)
+    admin = "`clear` `kick` `ban` `unban`"
+    fun_commands = "`8ball` `coin`"
+    information = "`ping` `userinfo` `avatar` `donate`"
+
+    # ----- FIELD ----- #
+    # Information
+    embed.add_field(name=':mag_right: Information', value=f"{information}", inline=True)
+    # Fun Commands
+    embed.add_field(name=":100: Fun Commands", value=f"{fun_commands}", inline=True)
+    # Administrator
+    embed.add_field(name=':tools: Administrator', value=f"{admin}", inline=True)
+    # ----- FOOTER ----- #
+    embed.set_footer(text=f"Request by {author.name}")
+
+    await ctx.send(embed=embed)
+
 # ========================= COMMON ERRORS ========================= #
 @client.event
 async def on_command_error(ctx, error):
@@ -51,5 +72,6 @@ for filename in os.listdir('./cogs'):
         client.load_extension(f'cogs.{filename[:-3]}')
         print(f'Loaded {filename[:-3]}')
 
+# ========== RUN BOT =========== #
 load_dotenv('.env')
 client.run(os.getenv('BOT_TOKEN'))
