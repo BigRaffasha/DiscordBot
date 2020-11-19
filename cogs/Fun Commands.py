@@ -13,6 +13,11 @@ class Fun(commands.Cog):
 
 # ========================= COMMANDS ========================= #
 
+    # ----- SAY COMMAND ----- #
+    @commands.command(aliases=['Say'])
+    async def say(self, ctx, *, argument):
+        await ctx.send(argument)
+
     # ----- 8 BALL COMMAND ----- #
     @commands.command(aliases=['8ball','8b','8B','8BALL','8Ball'])
     async def _8ball(self, ctx, *, question=None):

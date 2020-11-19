@@ -45,6 +45,25 @@ class Information(commands.Cog):
         await ctx.send(embed=embed)
         return
 
+    # ----- SERVER INFO ----- #
+    @commands.command(aliases=['ServerInfo','Server','server'])
+    async def serverinfo(self, ctx):
+        embed = discord.Embed(
+            colour=discord.Color.green(),
+            title=f"{ctx.guild.name}"
+            )
+        # Thumbnail   
+        embed.set_thumbnail(url=ctx.guild.icon_url)
+        # Field
+        embed.add_field(name="Server Region", value=f"`{ctx.guild.region}`", inline=True)
+        embed.add_field(name="\n\u200b", value="\n\u200b", inline=True)
+        embed.add_field(name="Members", value=f"{ctx.guild.member_count}", inline=True)
+        embed.add_field(name="Created at", value=ctx.guild.created_at.strftime("%a, %B %d %Y @ %H:%M:%S %p"))
+        # Footer
+        embed.set_footer(icon_url=f"{ctx.guild.icon_url}", text=f"Guild ID: {ctx.guild.id}")
+
+        await ctx.send(embed=embed)
+
     # ----- AVATAR ----- #
     @commands.command(aliases=['Avatar','AVATAR'])
     async def avatar(self, ctx, member:discord.Member=None):
