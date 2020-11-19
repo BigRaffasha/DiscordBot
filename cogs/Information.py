@@ -14,12 +14,12 @@ class Information(commands.Cog):
 # ========================= COMMANDS ========================= #
 
     # ----- PING ----- #
-    @commands.command()
+    @commands.command(aliases=["PING","Ping"])
     async def ping(self, ctx):
         await ctx.send(f':ping_pong: Pong! {round(self.client.latency * 1000)}ms')
 
     # ----- USER INFO ----- #
-    @commands.command(aliases=['user','info'])
+    @commands.command(aliases=['user','info','User','Info','UserInfo'])
     async def userinfo(self, ctx, *, member:discord.Member=None):
         embed = discord.Embed(color = discord.Colour.green(), timestamp=ctx.message.created_at)
         member = ctx.author if not member else member
@@ -46,7 +46,7 @@ class Information(commands.Cog):
         return
 
     # ----- AVATAR ----- #
-    @commands.command()
+    @commands.command(aliases=['Avatar','AVATAR'])
     async def avatar(self, ctx, member:discord.Member=None):
         member = ctx.author if not member else member
         embed = discord.Embed(color = discord.Colour.green())
@@ -58,7 +58,7 @@ class Information(commands.Cog):
         await ctx.send(embed=embed)
 
     # ----- DONATE ----- #
-    @commands.command()
+    @commands.command(aliases=['Donate','DONATE'])
     async def donate(self, ctx):
         embed = discord.Embed(
             title = ":moneybag: Donate",

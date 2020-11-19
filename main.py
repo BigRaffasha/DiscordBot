@@ -31,8 +31,8 @@ async def on_ready():
     await channel.send(f'Im back online!')
     print('Bot is online!')
 
-# ========================= COMMANDS ========================= #
-@client.command()
+# ========================= HELP COMMAND ========================= #
+@client.command(aliases=["Help", "HELP"])
 async def help(ctx):
     author = ctx.message.author
     embed = discord.Embed(color=discord.Color.blue(), title="Bot Commands", description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", timestamp=ctx.message.created_at)

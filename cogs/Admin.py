@@ -14,14 +14,14 @@ class Admin(commands.Cog):
 # ========================= COMMANDS ========================= #
 
     # -----CLEAR CHAT----- #
-    @commands.command(aliases=['cl'])
+    @commands.command(aliases=['cl','Clear'])
     @commands.has_guild_permissions(manage_messages=True)
     async def clear(self, ctx, amount=10):
         await ctx.channel.purge(limit=amount)
         return
 
     # ------KICK----- #
-    @commands.command(aliases=['k', 'remove'])
+    @commands.command(aliases=['remove', 'Kick', 'Remove'])
     @commands.has_permissions(administrator=True)
     async def kick(self, ctx, member: discord.Member, *, reason = None):
         await ctx.guild.kick(member)
@@ -29,7 +29,7 @@ class Admin(commands.Cog):
         return
 
     # -----BAN----- #
-    @commands.command()
+    @commands.command(aliases=['Ban','BAN'])
     @commands.has_permissions(administrator=True)
     async def ban(self, ctx, member: discord.Member, *, reason=None):
         await member.ban(reason=reason)
@@ -37,7 +37,7 @@ class Admin(commands.Cog):
         return
 
     # -----UNBAN----- #
-    @commands.command()
+    @commands.command(aliases=['Unban'])
     @commands.has_permissions(administrator=True)
     async def unban(self, ctx, *, member):
         banned_users = await ctx.guild.bans()

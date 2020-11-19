@@ -14,7 +14,7 @@ class Fun(commands.Cog):
 # ========================= COMMANDS ========================= #
 
     # ----- 8 BALL COMMAND ----- #
-    @commands.command(aliases=['8ball','8b'])
+    @commands.command(aliases=['8ball','8b','8B','8BALL','8Ball'])
     async def _8ball(self, ctx, *, question=None):
         embed = discord.Embed(colour=discord.Colour.green())
         responses = ["It is certain.",
@@ -52,7 +52,7 @@ class Fun(commands.Cog):
             return
 
     # ----- COIN FLIP ----- #
-    @commands.command(aliases=["coin", "flip"])
+    @commands.command(aliases=["coin","flip","flipcoin","Coin","Flip","COIN","FLIP","COINFLIP","FLIPCOIN"])
     async def coinflip(self, ctx):
         embed = discord.Embed(colour=discord.Colour.gold(), timestamp=ctx.message.created_at)
         result = ["**Head!**", "**Tails!**"]
