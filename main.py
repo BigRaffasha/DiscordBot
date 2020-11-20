@@ -35,7 +35,11 @@ async def on_ready():
 @client.command(aliases=["Help", "HELP"])
 async def help(ctx):
     author = ctx.message.author
-    embed = discord.Embed(color=discord.Color.blue(), title="Bot Commands", description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", timestamp=ctx.message.created_at)
+    embed = discord.Embed(
+        color=discord.Color.blue(), 
+        title="Bot Commands", 
+        description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", 
+        timestamp=ctx.message.created_at)
     admin = "`clear` `kick` `ban` `unban`"
     fun_commands = "`say` `8ball` `coin`"
     information = "`ping` `userinfo` `serverinfo` `avatar` `donate`"
