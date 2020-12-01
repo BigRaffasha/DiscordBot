@@ -46,11 +46,11 @@ async def help(ctx):
 
     # ----- FIELD ----- #
     # Information
-    embed.add_field(name=':mag_right: Information', value=f"{information}", inline=True)
+    embed.add_field(name=':mag_right: Information', value=f"{information}", inline=False)
     # Fun Commands
-    embed.add_field(name=":100: Fun Commands", value=f"{fun_commands}", inline=True)
+    embed.add_field(name=":100: Fun Commands", value=f"{fun_commands}", inline=False)
     # Administrator
-    embed.add_field(name=':tools: Administrator', value=f"{admin}", inline=True)
+    embed.add_field(name=':tools: Administrator', value=f"{admin}", inline=False)
     # ----- FOOTER ----- #
     embed.set_footer(text=f"Request by {author.name}")
 
