@@ -1,6 +1,5 @@
 import discord, random, time
 from discord.ext import commands
-from discord.utils import get
 
 class Fun(commands.Cog):
     def __init__(self, client):
