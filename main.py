@@ -119,7 +119,7 @@ async def help(ctx, commands=None):
 
         await ctx.send(embed=embed)
 
-    # ----- General Help ----- #
+# ---------- General Help ---------- #
     elif commands is None:
         embed = discord.Embed(
             color=discord.Color.blue(), 
