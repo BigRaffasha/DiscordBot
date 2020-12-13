@@ -45,7 +45,7 @@ class Information(commands.Cog):
         return
 
     # ----- SERVER INFO ----- #
-    @commands.command(aliases=['ServerInfo','Server','server'])
+    @commands.command(aliases=['ServerInfo','Server','server','SERVER'])
     async def serverinfo(self, ctx):
         embed = discord.Embed(
             colour=discord.Color.green(),

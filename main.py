@@ -33,28 +33,113 @@ async def on_ready():
 
 # ========================= HELP COMMAND ========================= #
 @client.command(aliases=["Help", "HELP"])
-async def help(ctx):
-    author = ctx.message.author
-    embed = discord.Embed(
-        color=discord.Color.blue(), 
-        title="Bot Commands", 
-        description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", 
-        timestamp=ctx.message.created_at)
-    admin = "`clear` `kick` `ban` `unban`"
-    fun_commands = "`say` `8ball` `coin`"
-    information = "`ping` `userinfo` `serverinfo` `avatar` `donate`"
+async def help(ctx, commands=None):
 
-    # ----- FIELD ----- #
-    # Information
-    embed.add_field(name=':mag_right: Information', value=f"{information}", inline=False)
-    # Fun Commands
-    embed.add_field(name=":100: Fun Commands", value=f"{fun_commands}", inline=False)
-    # Administrator
-    embed.add_field(name=':tools: Administrator', value=f"{admin}", inline=False)
-    # ----- FOOTER ----- #
-    embed.set_footer(text=f"Request by {author.name}")
+# ---------- INFORMATION ---------- #
+    # ----- Ping ----- #
+    if commands == "ping":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Ping",
+            description="""```>ping```
+            Returns client latency"""
+        )
 
-    await ctx.send(embed=embed)
+        await ctx.send(embed=embed)
+
+    # ----- User Info ----- #
+    elif commands == 'userinfo':
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="User Info",
+            description="""```>userinfo <member>```
+            Get a user information"""
+        )
+
+        embed.add_field(name="Aliases:", value="user, info")
+
+        await ctx.send(embed=embed)
+
+    # ----- Server Info ----- #
+    elif commands == 'serverinfo':
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Server Info",
+            description="""```>serverinfo```
+            Get a server information"""
+        )
+        embed.add_field(name="Aliases:", value="server")
+
+        await ctx.send(embed=embed)
+
+    # ----- Avatar ----- #
+    elif commands == "avatar":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Avatar",
+            description="""```>avatar <member>```
+            Get a user's avatar"""
+        )
+
+        await ctx.send(embed=embed)
+
+    # ----- Donate ----- #
+    elif commands == "donate":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Donate",
+            description="""```>donate```
+            Get a link to donate to the creator"""
+        )
+
+        await ctx.send(embed=embed)        
+
+# ---------- FUN COMMANDS ---------- #
+    # ----- 8 BALL ----- #
+    elif commands == "8ball":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="8 Ball",
+            description="""```>8ball <question>```
+            asks the 8 Ball"""
+        )
+        embed.add_field(name="Aliases:", value="8b")
+
+        await ctx.send(embed=embed)
+
+    # ----- COIN ----- #
+    elif commands == "coin":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Coin",
+            description="""```>coin```
+            Flips a coin"""
+        )
+        embed.add_field(name="Aliases:", value="flip, coinflip")
+
+        await ctx.send(embed=embed)
+
+    # ----- General Help ----- #
+    elif commands is None:
+        embed = discord.Embed(
+            color=discord.Color.blue(), 
+            title="Bot Commands", 
+            description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", 
+            timestamp=ctx.message.created_at)
+
+        admin = "`clear` `kick` `ban` `unban`"
+        fun_commands = "`say` `8ball` `coin`"
+        information = "`ping` `userinfo` `serverinfo` `avatar` `donate`"
+
+        # ----- FIELD ----- #
+        # Information
+        embed.add_field(name=':mag_right: Information', value=f"{information}", inline=False)
+        # Fun Commands
+        embed.add_field(name=":100: Fun Commands", value=f"{fun_commands}", inline=False)
+        # Administrator
+        embed.add_field(name=':tools: Administrator', value=f"{admin}", inline=False)
+
+        await ctx.send(embed=embed)
 
 # ========================= COMMON ERRORS ========================= #
 @client.event
