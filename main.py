@@ -119,6 +119,53 @@ async def help(ctx, commands=None):
 
         await ctx.send(embed=embed)
 
+# ---------- ADMINISTRATOR ---------- #
+    # ----- Clear ----- #
+    elif commands == "clear":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Clear",
+            description="""```>clear <amount>```
+            Delete messages"""
+        )
+        embed.add_field(name="Aliases:", value="cl, purge")
+
+        await ctx.send(embed=embed)
+
+    # ----- Kick ----- #
+    elif commands == "kick":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Kick",
+            description="""```>kick <user>```
+            Kicks a member out of the server"""
+        )
+        embed.add_field(name="Aliases:", value="remove")
+
+        await ctx.send(embed=embed)
+
+    # ----- Ban ----- #
+    elif commands == "ban":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Ban",
+            description="""```>ban <user>```
+            Bans a member from the server"""
+        )
+
+        await ctx.send(embed=embed)
+
+    # ----- Unban ----- #
+    elif commands == "unban":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Unban",
+            description="""```>unban <user>```
+            Unbans a banned member from the server"""
+        )
+
+        await ctx.send(embed=embed)
+
 # ---------- General Help ---------- #
     elif commands is None:
         embed = discord.Embed(

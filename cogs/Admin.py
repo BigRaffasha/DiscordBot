@@ -13,7 +13,7 @@ class Admin(commands.Cog):
 # ========================= COMMANDS ========================= #
 
     # -----CLEAR CHAT----- #
-    @commands.command(aliases=['cl','Clear'])
+    @commands.command(aliases=['cl','Clear','purge'])
     @commands.has_guild_permissions(manage_messages=True)
     async def clear(self, ctx, amount=10):
         await ctx.channel.purge(limit=amount)
