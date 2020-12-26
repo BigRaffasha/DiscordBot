@@ -126,7 +126,7 @@ async def help(ctx, commands=None):
             color=discord.Color.blue(),
             title="Clear",
             description="""```>clear <amount>```
-            Delete messages"""
+            Delete messages. Default amount is 10"""
         )
         embed.add_field(name="Aliases:", value="cl, purge")
 

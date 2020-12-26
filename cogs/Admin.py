@@ -1,4 +1,4 @@
-import discord
+import discord, time
 from discord.ext import commands
 
 class Admin(commands.Cog):
@@ -13,11 +13,26 @@ class Admin(commands.Cog):
 # ========================= COMMANDS ========================= #
 
     # -----CLEAR CHAT----- #
-    @commands.command(aliases=['cl','Clear','purge'])
+    @commands.command(aliases=['cl','Clear','purge','clr','cls'])
     @commands.has_guild_permissions(manage_messages=True)
     async def clear(self, ctx, amount=10):
         await ctx.channel.purge(limit=amount)
         return
+
+    # -----GIVE ROLES----- #
+    @commands.command(aliases=['addrole','addroles','giveroles'])
+    @commands.has_permissions(administrator=True)
+    async def giverole(self, ctx, member: discord.Member, role: discord.Role):
+        await member.add_roles(role)
+        await ctx.send(f"Successfully given")
+
+    # -----REMOVE ROLES----- #
+    @commands.command(aliases=['rrole','Rrole'])
+    @commands.has_permissions(administrator=True)
+    async def removerole(self, ctx, member: discord.Member, role: discord.Role):
+        await member.remove_roles(role)
+        await ctx.send(f"Successfully removed")
+
 
     # ------KICK----- #
     @commands.command(aliases=['remove', 'Kick', 'Remove'])
@@ -69,6 +84,12 @@ class Admin(commands.Cog):
             await ctx.send(f"Sorry, I can't find that user")
         else:
             await ctx.send(f"Are you sick?")
+
+    # -----ERROR CHECK----- #
+    @giverole.error
+    async def giverole_error(self, ctx, error):
+        if isinstance(error):
+            raise error
 
 def setup(client):
     client.add_cog(Admin(client))
