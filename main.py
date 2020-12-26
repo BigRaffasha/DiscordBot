@@ -128,7 +128,7 @@ async def help(ctx, commands=None):
             description="""```>clear <amount>```
             Delete messages. Default amount is 10"""
         )
-        embed.add_field(name="Aliases:", value="cl, purge")
+        embed.add_field(name="Aliases:", value="cl, purge, clr, cls")
 
         await ctx.send(embed=embed)
 
