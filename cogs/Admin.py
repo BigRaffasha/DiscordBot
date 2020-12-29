@@ -28,7 +28,7 @@ class Admin(commands.Cog):
         await member.add_roles(muted)
 
         # Mute per sec
-        if unit == 's' or 'S' or 'sec' or 'Sec':
+        if unit == 's':
             wait = 1 * time
             embed = discord.Embed(colour=discord.Colour.red())
             embed.add_field(name=f"Muted {member.nick} for {time} Second", value=f"Reason: {reason}")
@@ -37,7 +37,7 @@ class Admin(commands.Cog):
             await member.remove_roles(muted)
 
         # Mute per min
-        elif unit == 'm' or 'M' or 'min' or 'Min':
+        elif unit == 'm':
             wait = 60 * time
             embed = discord.Embed(colour=discord.Colour.red())
             embed.add_field(name=f"Muted {member.nick} for {time} Minute", value=f"Reason: {reason}")
@@ -47,7 +47,7 @@ class Admin(commands.Cog):
 
 
         # Mute per hour
-        elif unit == 'h' or 'H' or 'hour' or 'Hour':
+        elif unit == 'h':
             wait = 3600 * time
             embed = discord.Embed(colour=discord.Colour.red())
             embed.add_field(name=f"Muted {member.nick} for {time} Hour", value=f"Reason: {reason}")
@@ -57,7 +57,7 @@ class Admin(commands.Cog):
 
 
         # Mute per day
-        elif unit == 'd' or 'D' or 'day' or 'Day':
+        elif unit == 'd':
             wait = 86400 * time
             embed = discord.Embed(colour=discord.Colour.red())
             embed.add_field(name=f"Muted {member.nick} for {time} Day", value=f"Reason: {reason}")
