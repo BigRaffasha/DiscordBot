@@ -1,4 +1,4 @@
-import discord, time
+import discord, asyncio
 from discord.ext import commands
 
 class Admin(commands.Cog):
@@ -19,8 +19,55 @@ class Admin(commands.Cog):
         await ctx.channel.purge(limit=amount)
         return
 
+    # -----MUTE----- #
+    @commands.command(aliases=['Mute','MUTE'])
+    @commands.has_permissions(kick_members=True)
+    async def mute(self, ctx, member: discord.Member, time=int(0), unit=None, *, reason=None):
+        muted = discord.utils.get(ctx.message.guild.roles, name="Muted")
+
+        await member.add_roles(muted)
+
+        # Mute per sec
+        if unit == 's' or 'S' or 'sec' or 'Sec':
+            wait = 1 * time
+            embed = discord.Embed(colour=discord.Colour.red())
+            embed.add_field(name=f"Muted {member.nick} for {time} Second", value=f"Reason: {reason}")
+            await ctx.send(embed=embed)
+            await asyncio.sleep(wait)
+            await member.remove_roles(muted)
+
+        # Mute per min
+        elif unit == 'm' or 'M' or 'min' or 'Min':
+            wait = 60 * time
+            embed = discord.Embed(colour=discord.Colour.red())
+            embed.add_field(name=f"Muted {member.nick} for {time} Minute", value=f"Reason: {reason}")
+            await ctx.send(embed=embed)
+            await asyncio.sleep(wait)
+            await member.remove_roles(muted)
+
+
+        # Mute per hour
+        elif unit == 'h' or 'H' or 'hour' or 'Hour':
+            wait = 3600 * time
+            embed = discord.Embed(colour=discord.Colour.red())
+            embed.add_field(name=f"Muted {member.nick} for {time} Hour", value=f"Reason: {reason}")
+            await ctx.send(embed=embed)
+            await asyncio.sleep(wait)
+            await member.remove_roles(muted)
+
+
+        # Mute per day
+        elif unit == 'd' or 'D' or 'day' or 'Day':
+            wait = 86400 * time
+            embed = discord.Embed(colour=discord.Colour.red())
+            embed.add_field(name=f"Muted {member.nick} for {time} Day", value=f"Reason: {reason}")
+            await ctx.send(embed=embed)
+            await asyncio.sleep(wait)
+            await member.remove_roles(muted)
+
+
     # -----GIVE ROLES----- #
-    @commands.command(aliases=['addrole','addroles','giveroles'])
+    @commands.command(aliases=['addrole','addroles','giveroles','grole'])
     @commands.has_permissions(administrator=True)
     async def giverole(self, ctx, member: discord.Member, role: discord.Role):
         await member.add_roles(role)
@@ -86,8 +133,8 @@ class Admin(commands.Cog):
             await ctx.send(f"Are you sick?")
 
     # -----ERROR CHECK----- #
-    @giverole.error
-    async def giverole_error(self, ctx, error):
+    @mute.error
+    async def mute_error(self, ctx, error):
         if isinstance(error):
             raise error
 
