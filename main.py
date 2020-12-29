@@ -120,6 +120,7 @@ async def help(ctx, commands=None):
         await ctx.send(embed=embed)
 
 # ---------- ADMINISTRATOR ---------- #
+
     # ----- Clear ----- #
     elif commands == "clear":
         embed = discord.Embed(
@@ -129,6 +130,52 @@ async def help(ctx, commands=None):
             Delete messages. Default amount is 10"""
         )
         embed.add_field(name="Aliases:", value="cl, purge, clr, cls")
+
+        await ctx.send(embed=embed)
+
+    # ----- Mute ----- #
+    elif commands == "mute":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Mute",
+            description="""```>mute <user> <time>```
+            Mute the specified user"""
+        )
+
+        await ctx.send(embed=embed)
+
+    # ----- Unmute ----- #
+    elif commands == "unmute":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Unmute",
+            description="""```>unmute <user>```
+            Unmute the specified user"""
+        )
+
+        await ctx.send(embed=embed)
+
+    # ----- Give Role ----- #
+    elif commands == "giverole":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Give Role",
+            description="""```>giverole <user> <role name>```
+            Give the specified user a role"""
+        )
+        embed.add_field(name="Aliases:", value="grole")
+
+        await ctx.send(embed=embed)
+
+    # ----- Remove Role ----- #
+    elif commands == "removerole":
+        embed = discord.Embed(
+            color=discord.Color.blue(),
+            title="Remove Role",
+            description="""```>removerole <user> <role name>```
+            Remove a role from a user"""
+        )
+        embed.add_field(name="Aliases:", value="rrole")
 
         await ctx.send(embed=embed)
 
@@ -174,7 +221,7 @@ async def help(ctx, commands=None):
             description="Type `>help [option]` to see detailed information about the commands, \ne.g. `>help ping`", 
             timestamp=ctx.message.created_at)
 
-        admin = "`clear` `kick` `ban` `unban`"
+        admin = "`clear` `mute` `unmute` `giverole` `removerole` `kick` `ban` `unban`"
         fun_commands = "`say` `8ball` `coin`"
         information = "`ping` `userinfo` `serverinfo` `avatar` `donate`"
 
