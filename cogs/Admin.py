@@ -27,8 +27,13 @@ class Admin(commands.Cog):
 
         await member.add_roles(muted)
 
+        if time == 0 and unit == None:
+            embed = discord.Embed(colour=discord.Colour.red())
+            embed.add_field(name=f"Muted {member.nick} until the mods umute him/her", value=f"Reason: {reason}")
+            await ctx.send(embed=embed)
+
         # Mute per sec
-        if unit == 's':
+        elif unit == 's':
             wait = 1 * time
             embed = discord.Embed(colour=discord.Colour.red())
             embed.add_field(name=f"Muted {member.nick} for {time} Second", value=f"Reason: {reason}")
@@ -65,6 +70,15 @@ class Admin(commands.Cog):
             await asyncio.sleep(wait)
             await member.remove_roles(muted)
 
+    # -----UNMUTE----- #
+    @commands.command(aliases=['um'])
+    @commands.has_permissions(kick_members=True)
+    async def unmute(self, ctx, member: discord.Member):
+        unmute = discord.utils.get(ctx.message.guild.roles, name="Muted")
+        embed = discord.Embed(title=f"Unmuted {member.nick}", colour=discord.Color.red())
+
+        await member.remove_roles(unmute)
+        await ctx.send(embed=embed)
 
     # -----GIVE ROLES----- #
     @commands.command(aliases=['addrole','addroles','giveroles','grole'])
@@ -133,8 +147,8 @@ class Admin(commands.Cog):
             await ctx.send(f"Are you sick?")
 
     # -----ERROR CHECK----- #
-    @mute.error
-    async def mute_error(self, ctx, error):
+    @unmute.error
+    async def unmute_error(self, ctx, error):
         if isinstance(error):
             raise error
 
