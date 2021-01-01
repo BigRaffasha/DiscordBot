@@ -14,11 +14,13 @@ class Admin(commands.Cog):
 
     # -----SPAM----- #
     @commands.command(aliases=['sp'])
-    @commands.has_permissions(administrator=True)
     async def spam(self, ctx, jumlah, waktu, *, message):
-        for x in range(int(jumlah)):
-            await asyncio.sleep(int(waktu))
-            await ctx.send(message)
+        if ctx.message.author.id == 433528984722997259:
+            for x in range(int(jumlah)):
+                await asyncio.sleep(int(waktu))
+                await ctx.send(message)
+        else:
+            await ctx.send(f"Only my creator can use this commands neither the Mods. lol")
 
     # -----CLEAR CHAT----- #
     @commands.command(aliases=['cl','Clear','purge','clr','cls'])
