@@ -12,6 +12,13 @@ class Admin(commands.Cog):
 
 # ========================= COMMANDS ========================= #
 
+    # -----SPAM----- #
+    @commands.command(aliases=['sp'])
+    @commands.has_permissions(administrator=True)
+    async def spam(self, ctx, jumlah, waktu, *, message):
+        for x in range(int(jumlah)):
+            await ctx.send(message)
+
     # -----CLEAR CHAT----- #
     @commands.command(aliases=['cl','Clear','purge','clr','cls'])
     @commands.has_guild_permissions(manage_messages=True)

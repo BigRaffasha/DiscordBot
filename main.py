@@ -138,7 +138,7 @@ async def help(ctx, commands=None):
         embed = discord.Embed(
             color=discord.Color.blue(),
             title="Mute",
-            description="""```>mute <user> <time>```
+            description="""```>mute <user> <time> <unit> <reason>```
             Mute the specified user"""
         )
 
