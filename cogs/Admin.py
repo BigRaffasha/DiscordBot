@@ -17,7 +17,7 @@ class Admin(commands.Cog):
     @commands.has_permissions(administrator=True)
     async def spam(self, ctx, jumlah, waktu, *, message):
         for x in range(int(jumlah)):
-            await asyncio.sleep(waktu)
+            await asyncio.sleep(int(waktu))
             await ctx.send(message)
 
     # -----CLEAR CHAT----- #
