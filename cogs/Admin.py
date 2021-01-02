@@ -17,8 +17,8 @@ class Admin(commands.Cog):
     async def spam(self, ctx, jumlah, waktu, *, message):
         if ctx.message.author.id == 433528984722997259:
             for x in range(int(jumlah)):
-                await asyncio.sleep(int(waktu))
                 await ctx.send(message)
+                await asyncio.sleep(int(waktu))
         else:
             await ctx.send(f"Only my creator can use this commands neither the Mods. lol")
 
