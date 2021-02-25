@@ -7,22 +7,6 @@ intents = discord.Intents.all()
 client = commands.Bot(command_prefix = '>', intents = intents)
 client.remove_command('help')
 
-# ========================= COGS ========================= #
-
-# LOAD COGS #
-@client.command()
-async def load(ctx, extension):
-    client.load_extension(f'cogs.{extension}')
-    await ctx.send(f'Loaded "{extension}"')
-    print(f'Loaded "{extension}"')
-
-# UNLOAD COGS #
-@client.command()
-async def unload(ctx, extension):
-    client.unload_extension(f'cogs.{extension}')
-    await ctx.send(f'Unloaded "{extension}"')
-    print(f'Unoaded "{extension}"')
-
 # ========================= BOT STATUS ========================= #
 @client.event
 async def on_ready():
