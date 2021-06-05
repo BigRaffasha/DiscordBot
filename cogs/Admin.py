@@ -20,7 +20,7 @@ class Admin(commands.Cog):
                 await ctx.send(message)
                 await asyncio.sleep(int(waktu))
         else:
-            await ctx.send(f"Only my creator can use this commands neither the Mods. lol")
+            await ctx.send(f"Only my creator can use this commands")
 
     # -----CLEAR CHAT----- #
     @commands.command(aliases=['cl','Clear','purge','clr','cls'])
